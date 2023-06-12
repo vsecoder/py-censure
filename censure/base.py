@@ -242,7 +242,7 @@ class CensorBase:
             word_info = self.check_word(word)
             if not word_info['is_good']:
                 bad_words_count += 1
-                line = line.replace(word, beep * len(word), 1)
+                line = line.replace(word, beep * len(word))
 
         bad_phrases_count = 0
         line_info = self.check_line_bad_phrases(line)

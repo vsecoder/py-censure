@@ -235,14 +235,14 @@ class CensorBase:
             return True
         return False
 
-    def clean_line(self, line, beep=constants.BEEP):
+    def clean_line(self, line, beep=constants.BEEP, word=False):
         bad_words_count = 0
         words = re.split(patterns.PAT_SPACE, line)
         for word in words:
             word_info = self.check_word(word)
             if not word_info['is_good']:
                 bad_words_count += 1
-                line = line.replace(word, beep, 1)
+                line = line.replace(word, beep, 1) if word else line.replace(word, beep * len(word), 1)
 
         bad_phrases_count = 0
         line_info = self.check_line_bad_phrases(line)
